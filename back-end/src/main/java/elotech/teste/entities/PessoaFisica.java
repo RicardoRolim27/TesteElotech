@@ -13,10 +13,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "pessoa_fisica")
+@Table(name = "pessoa_fisica",
+uniqueConstraints = { 
+		@UniqueConstraint(columnNames = "name"),
+		@UniqueConstraint(columnNames = "cpf")})
 public class PessoaFisica implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -28,7 +32,7 @@ public class PessoaFisica implements Serializable {
 	private String name;
 	@NotBlank
 	private String cpf;
-	@NotBlank
+	
 	private Calendar dataNascimento;
 	
 	@OneToMany
