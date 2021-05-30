@@ -39,12 +39,12 @@ public class PessoaFisica implements Serializable {
 	
 	public PessoaFisica() {}
 
-	public PessoaFisica(Long id, String name, String cpf, Calendar dataNascimernto) {
+	public PessoaFisica(Long id, String name, String cpf, Calendar dataNascimento) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
-		this.dataNascimento = dataNascimernto;
+		this.dataNascimento = dataNascimento;
 	}
 
 	public Long getId() {
@@ -71,12 +71,12 @@ public class PessoaFisica implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public Calendar getDataNascimernto() {
+	public Calendar getDataNascimento() {
 		return dataNascimento;
 	}
 
-	public void setDataNascimernto(Calendar dataNascimernto) {
-		this.dataNascimento = dataNascimernto;
+	public void setDataNascimento(Calendar dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 	
 
