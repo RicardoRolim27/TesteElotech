@@ -29,7 +29,7 @@ public class PessoaFisica implements Serializable {
 	@NotBlank
 	private String cpf;
 	@NotBlank
-	private Calendar dataNascimernto;
+	private Calendar dataNascimento;
 	
 	@OneToMany
 	@JoinTable(name = "pessoa_contato",
@@ -44,7 +44,7 @@ public class PessoaFisica implements Serializable {
 		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
-		this.dataNascimernto = dataNascimernto;
+		this.dataNascimento = dataNascimernto;
 	}
 
 	public Long getId() {
@@ -72,11 +72,11 @@ public class PessoaFisica implements Serializable {
 	}
 
 	public Calendar getDataNascimernto() {
-		return dataNascimernto;
+		return dataNascimento;
 	}
 
 	public void setDataNascimernto(Calendar dataNascimernto) {
-		this.dataNascimernto = dataNascimernto;
+		this.dataNascimento = dataNascimernto;
 	}
 	
 
