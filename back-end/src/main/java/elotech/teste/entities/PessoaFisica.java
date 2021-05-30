@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "pessoa_fisica")
@@ -18,11 +19,11 @@ public class PessoaFisica implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	@NotBlank
 	private String name;
-	
+	@NotBlank
 	private String cpf;
-	
+	@NotBlank
 	private Calendar dataNascimernto;
 	
 	public PessoaFisica() {}
