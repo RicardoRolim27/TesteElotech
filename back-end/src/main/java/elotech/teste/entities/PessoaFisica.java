@@ -78,6 +78,15 @@ public class PessoaFisica implements Serializable {
 	public void setDataNascimernto(Calendar dataNascimernto) {
 		this.dataNascimernto = dataNascimernto;
 	}
+	
+
+	public Set<Contato> getContatos() {
+		return contatos;
+	}
+
+	public void setContatos(Set<Contato> contatos) {
+		this.contatos = contatos;
+	}
 
 	@Override
 	public int hashCode() {
