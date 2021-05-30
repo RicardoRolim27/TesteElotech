@@ -1,7 +1,9 @@
 package elotech.teste.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import elotech.teste.entities.PessoaFisica;
 
@@ -13,6 +15,8 @@ public class PessoaFisicaDTO implements Serializable {
 	private String name;
 	private String cpf;
 	private Calendar dataNascimento;
+	
+	private List<ContatoDTO> contatos = new ArrayList<>();
 	
 	public PessoaFisicaDTO() {}
 
@@ -62,6 +66,14 @@ public class PessoaFisicaDTO implements Serializable {
 
 	public void setDataNascimento(Calendar dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+
+	public List<ContatoDTO> getContatos() {
+		return contatos;
+	}
+
+	public void setContatos(List<ContatoDTO> contatos) {
+		this.contatos = contatos;
 	}
 	
 	
