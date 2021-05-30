@@ -2,11 +2,16 @@ package elotech.teste.entities;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -25,6 +30,12 @@ public class PessoaFisica implements Serializable {
 	private String cpf;
 	@NotBlank
 	private Calendar dataNascimernto;
+	
+	@OneToMany
+	@JoinTable(name = "pessoa_contato",
+		joinColumns = @JoinColumn(name = "pessoa_id"),
+		inverseJoinColumns = @JoinColumn(name = "contato_id"))
+	private Set<Contato> contatos = new HashSet<>();
 	
 	public PessoaFisica() {}
 
