@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import elotech.teste.entities.PessoaFisica;
 
@@ -34,6 +35,7 @@ public class PessoaFisicaDTO implements Serializable {
 		name = entity.getName();
 		cpf = entity.getCpf();
 		dataNascimento = entity.getDataNascimento();
+		contatos = entity.getContatos().stream().map(x -> new ContatoDTO(x)).collect(Collectors.toList());
 	}
 
 	public Long getId() {
