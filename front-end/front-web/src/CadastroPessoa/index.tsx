@@ -85,7 +85,7 @@ function CadastroPessoa() {
                                         type="text"
                                         name="nickname"
                                         className="form-control"
-                                        placeholder="Nickname"
+                                        placeholder="Nome"
                                         onChange={event => setName(event.target.value)}>
                                     </input>
                                 </div>
