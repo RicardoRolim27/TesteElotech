@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,11 +30,12 @@ public class ContatoController {
 		return ResponseEntity.ok().body(list);
 	}
 	
-	@PostMapping
-	public ResponseEntity<ContatoDTO> insert(@RequestBody ContatoDTO dto) {
-		dto = service.insert(dto);
+	@PostMapping("/insert/{pessoaId}")
+	public ResponseEntity<ContatoDTO> insert(@RequestBody ContatoDTO dto, @PathVariable Long pessoaID) {
+		dto = service.insert(dto, pessoaID);
 
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId(), pessoaID).toUri();
+		
 		return ResponseEntity.created(uri).body(dto);
 	}
 
