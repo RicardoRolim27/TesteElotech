@@ -1,7 +1,6 @@
 package elotech.teste.controllers;
 
 import java.net.URI;
-import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import elotech.teste.dto.PessoaFisicaDTO;
-import elotech.teste.repositories.PessoaFisicaRepository;
 import elotech.teste.services.PessoaFisicaService;
 
 @RestController
