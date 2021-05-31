@@ -1,6 +1,7 @@
 package elotech.teste.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,5 +19,8 @@ public interface PessoaFisicaRepository extends JpaRepository<PessoaFisica, Long
 			nativeQuery = true)
 	List<PessoaFisica> findAll();
 	
+	
+	Optional<PessoaFisica> findById(Long id); 
+		
 
 }
