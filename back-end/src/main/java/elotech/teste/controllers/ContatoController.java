@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import elotech.teste.dto.ContatoDTO;
-import elotech.teste.repositories.PessoaFisicaRepository;
 import elotech.teste.services.ContatoService;
 
 @RestController
@@ -23,9 +22,6 @@ public class ContatoController {
 	
 	@Autowired
 	private ContatoService service;
-	
-	@Autowired
-	private PessoaFisicaRepository pessoaRepo;
 	
 	@GetMapping
 	public ResponseEntity<List<ContatoDTO>> findAll(){
