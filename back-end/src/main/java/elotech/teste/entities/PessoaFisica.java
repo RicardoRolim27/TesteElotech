@@ -19,7 +19,6 @@ import javax.validation.constraints.NotBlank;
 @Entity
 @Table(name = "pessoa_fisica",
 uniqueConstraints = { 
-		@UniqueConstraint(columnNames = "name"),
 		@UniqueConstraint(columnNames = "cpf")})
 public class PessoaFisica implements Serializable {
 
