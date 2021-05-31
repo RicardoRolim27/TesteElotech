@@ -19,7 +19,7 @@ function Home() {
                         <Nav className="mr-auto">
                             <Nav.Link href="/">Home</Nav.Link>
                             <NavDropdown title="Menu" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Cadastrar Pessoa Física</NavDropdown.Item>
+                                <NavDropdown.Item href="/cadastroPessoa">Cadastrar Pessoa Física</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Cadastrar Contato</NavDropdown.Item>
                                 <NavDropdown.Divider />
                             </NavDropdown>
