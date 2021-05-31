@@ -26,7 +26,7 @@ Body > Raw > Json
 {
    "name": "Maria",
    "phone": "999885563",
-   "email": "odete@gmail.com",
+   "email": "maria@gmail.com",
    "pessoa": 1
 }
 
