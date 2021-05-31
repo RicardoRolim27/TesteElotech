@@ -24,12 +24,21 @@ public class PessoaFisicaService {
 	private ContatoRepository contatoRepository;
 	
 	@Transactional(readOnly = true)
-	public List<PessoaFisicaDTO> findAll(){
+	public List<PessoaFisicaDTO> findAllPessoaWithContatos(){
 		
 		List<PessoaFisica> list = pessoaRepository.FindPessoaWithContatos();
 		
 		return list.stream().map(x -> new PessoaFisicaDTO(x)).collect(Collectors.toList());
 	}
+	
+	@Transactional(readOnly = true)
+	public List<PessoaFisicaDTO> findAll(){
+		
+		List<PessoaFisica> list = pessoaRepository.findAll();
+		
+		return list.stream().map(x -> new PessoaFisicaDTO(x)).collect(Collectors.toList());
+	}
+	
 	
 	@Transactional
 	public PessoaFisicaDTO insert(PessoaFisicaDTO dto) {
@@ -42,6 +51,7 @@ public class PessoaFisicaService {
 		}
 		
 		pessoa = pessoaRepository.save(pessoa);
+		
 		
 		return new PessoaFisicaDTO(pessoa);
 	}
@@ -57,10 +67,31 @@ public class PessoaFisicaService {
 		return new PessoaFisicaDTO(pessoa);
 	}
 	
+	public PessoaFisicaDTO updateRegister(Long id, PessoaFisicaDTO dto) {
+
+        if (pessoaRepository.findById(id).isPresent()){
+            PessoaFisica existingPessoa = pessoaRepository.findById(id).get();
+
+            existingPessoa.setName(dto.getName());
+            existingPessoa.setCpf(dto.getCpf());
+            existingPessoa.setDataNascimento(dto.getDataNascimento());
+
+            PessoaFisica updatedPessoa = pessoaRepository.save(existingPessoa);
+
+            return new PessoaFisicaDTO(updatedPessoa.getId(), updatedPessoa.getName(),
+                    updatedPessoa.getCpf(), updatedPessoa.getDataNascimento());
+        }else{
+            return null;
+        }
+    }
+	
 	@Transactional
 	public void delete(Long id) {
 		pessoaRepository.deleteById(id);
 		
+		
 	}
+	
+	
 
 }
