@@ -56,16 +56,6 @@ public class PessoaFisicaService {
 		return new PessoaFisicaDTO(pessoa);
 	}
 	
-	@Transactional
-	public PessoaFisicaDTO update(Long id, String name, String cpf, Calendar dataNascimento) {
-		PessoaFisica pessoa = pessoaRepository.getById(id);
-		pessoa.setName(name);
-		pessoa.setCpf(cpf);
-		pessoa.setDataNascimento(dataNascimento);
-		pessoa = pessoaRepository.save(pessoa);
-		
-		return new PessoaFisicaDTO(pessoa);
-	}
 	
 	public PessoaFisicaDTO updateRegister(Long id, PessoaFisicaDTO dto) {
 
