@@ -1,6 +1,7 @@
 package elotech.teste.services;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,16 +30,22 @@ public class ContatoService {
 	}
 	
 	@Transactional
-	public ContatoDTO insert(ContatoDTO dto, Long pessoaId) {
-		Contato contato = new Contato(null, dto.getName(), dto.getPhone(), dto.getEmail());
+	public ContatoDTO insert(ContatoDTO dto, Long id) {
+		
+		Optional<PessoaFisica> pessoa = pessoaRepo.findById(id);
+		
+		if(pessoa.isPresent()) {
+			System.out.println(pessoa);
+		}
+		
+		Contato contato = new Contato(null, dto.getName(), dto.getPhone(), 
+				dto.getEmail(), dto.getPessoaId());
 		
 		contato = repository.save(contato);
 		
-		PessoaFisica pessoa = pessoaRepo.findById(pessoaId).get();
+		/*pessoa.getContatos().add(contato);
 		
-		pessoa.getContatos().add(contato);
-		
-		pessoa = pessoaRepo.save(pessoa);
+		pessoa = pessoaRepo.save(pessoa);*/
 		
 		return new ContatoDTO(contato);
 	}
