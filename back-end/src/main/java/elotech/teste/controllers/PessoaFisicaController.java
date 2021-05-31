@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import elotech.teste.dto.PessoaFisicaDTO;
+import elotech.teste.repositories.PessoaFisicaRepository;
 import elotech.teste.services.PessoaFisicaService;
 
 @RestController
@@ -27,12 +30,20 @@ public class PessoaFisicaController {
 	@Autowired
 	private PessoaFisicaService service;
 
-	@GetMapping
+	@GetMapping("/contatos")
+	public ResponseEntity<List<PessoaFisicaDTO>> findAllContatos() {
+		List<PessoaFisicaDTO> list = service.findAllPessoaWithContatos();
+
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@GetMapping("/all")
 	public ResponseEntity<List<PessoaFisicaDTO>> findAll() {
 		List<PessoaFisicaDTO> list = service.findAll();
 
 		return ResponseEntity.ok().body(list);
 	}
+	
 
 	@PostMapping
 	public ResponseEntity<PessoaFisicaDTO> insert(@RequestBody PessoaFisicaDTO dto) {
@@ -42,16 +53,16 @@ public class PessoaFisicaController {
 		return ResponseEntity.created(uri).body(dto);
 	}
 
-	@PutMapping("/{id}/update")
-	public ResponseEntity<PessoaFisicaDTO> updateRegister(@PathVariable Long id, String name, String cpf,
-			Calendar dataNascimento) {
+	@PutMapping(value = "/update/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<PessoaFisicaDTO> updateRegister(@PathVariable Long id, 
+			@RequestBody PessoaFisicaDTO dto) {
+		
 
-		PessoaFisicaDTO dto = service.update(id, name, cpf, dataNascimento);
-
-		return ResponseEntity.ok().body(dto);
+		return new ResponseEntity<>(service.updateRegister(id, dto), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/{id}/delete")
+	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Long> deleteRegister(@PathVariable Long id) {
 
 		service.delete(id);
