@@ -9,13 +9,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import elotech.teste.dto.ContatoDTO;
 import elotech.teste.entities.Contato;
+import elotech.teste.entities.PessoaFisica;
 import elotech.teste.repositories.ContatoRepository;
+import elotech.teste.repositories.PessoaFisicaRepository;
 
 @Service
 public class ContatoService {
 	
 	@Autowired
 	private ContatoRepository repository;
+	
+	private PessoaFisicaRepository pessoaRepo;
 	
 	@Transactional(readOnly = true)
 	public List<ContatoDTO> findAll(){
@@ -25,10 +29,16 @@ public class ContatoService {
 	}
 	
 	@Transactional
-	public ContatoDTO insert(ContatoDTO dto) {
+	public ContatoDTO insert(ContatoDTO dto, Long pessoaId) {
 		Contato contato = new Contato(null, dto.getName(), dto.getPhone(), dto.getEmail());
 		
 		contato = repository.save(contato);
+		
+		PessoaFisica pessoa = pessoaRepo.findById(pessoaId).get();
+		
+		pessoa.getContatos().add(contato);
+		
+		pessoa = pessoaRepo.save(pessoa);
 		
 		return new ContatoDTO(contato);
 	}
