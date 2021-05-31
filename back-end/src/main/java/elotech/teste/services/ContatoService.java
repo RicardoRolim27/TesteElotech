@@ -32,11 +32,7 @@ public class ContatoService {
 	@Transactional
 	public ContatoDTO insert(ContatoDTO dto, Long id) {
 		
-		Optional<PessoaFisica> pessoa = pessoaRepo.findById(id);
-		
-		if(pessoa.isPresent()) {
-			System.out.println(pessoa);
-		}
+		/*PessoaFisica pessoa = pessoaRepo.getOne(id);*/
 		
 		Contato contato = new Contato(null, dto.getName(), dto.getPhone(), 
 				dto.getEmail(), dto.getPessoaId());
