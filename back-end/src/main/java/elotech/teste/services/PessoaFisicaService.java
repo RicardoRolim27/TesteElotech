@@ -1,6 +1,5 @@
 package elotech.teste.services;
 
-import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -65,9 +64,8 @@ public class PessoaFisicaService {
             existingPessoa.setName(dto.getName());
             existingPessoa.setCpf(dto.getCpf());
             existingPessoa.setDataNascimento(dto.getDataNascimento());
-
             PessoaFisica updatedPessoa = pessoaRepository.save(existingPessoa);
-
+               
             return new PessoaFisicaDTO(updatedPessoa.getId(), updatedPessoa.getName(),
                     updatedPessoa.getCpf(), updatedPessoa.getDataNascimento());
         }else{
