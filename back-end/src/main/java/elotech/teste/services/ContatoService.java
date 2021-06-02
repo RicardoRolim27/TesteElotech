@@ -1,6 +1,5 @@
 package elotech.teste.services;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import elotech.teste.dto.ContatoDTO;
-import elotech.teste.dto.PessoaFisicaDTO;
 import elotech.teste.entities.Contato;
 import elotech.teste.entities.PessoaFisica;
 import elotech.teste.repositories.ContatoRepository;
@@ -37,7 +35,7 @@ public class ContatoService {
 		PessoaFisica pessoa =  pessoaRepo.PegaPorId(id);
 		
 		Contato contato = new Contato(null, dto.getName(), dto.getPhone(), 
-				dto.getEmail(), dto.getPessoaId());
+				dto.getEmail());
 		
 		contato = repository.save(contato);
 	
