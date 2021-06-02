@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -28,18 +27,14 @@ public class Contato implements Serializable{
 	@Email
 	private String email;
 	
-	@ManyToOne
-	private PessoaFisica pessoaId;
-	
 	public Contato() {}
 
-	public Contato(Long id, String name, String phone, String email, PessoaFisica pessoaId) {
+	public Contato(Long id, String name, String phone, String email) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.phone = phone;
 		this.email = email;
-		this.pessoaId = pessoaId;
 	}
 
 	public Long getId() {
@@ -74,14 +69,6 @@ public class Contato implements Serializable{
 		this.email = email;
 	}
 	
-	public PessoaFisica getPessoaId() {
-		return pessoaId;
-	}
-
-	public void setPessoaId(PessoaFisica pessoaId) {
-		this.pessoaId = pessoaId;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
