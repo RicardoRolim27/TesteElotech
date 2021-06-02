@@ -1,4 +1,4 @@
-package elotech.teste.config;
+/*package elotech.teste.config;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -25,4 +25,4 @@ public class MainConfig {
 
         return basicDataSource;
     }
-}
+}*/
